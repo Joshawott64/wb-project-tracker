@@ -146,3 +146,20 @@ FROM students
   JOIN grades ON (students.github = grades.student_github)
   JOIN projects ON (grades.project_title = projects.title)
 WHERE github = 'jhacks';
+
+-- Further study
+
+-- Creating Views
+-- A view can store the results of a query
+-- You can select and join on the view as if it were a real table
+CREATE VIEW report_card_view AS
+SELECT students.first_name, students.last_name, projects.title, projects.max_grade, grades.grade
+FROM students
+    JOIN grades ON (students.github = grades.student_github)
+    JOIN projects ON (grades.project_title = projects.title);
+
+-- Altering a Table
+-- PostgreSQL supports the ALTER TABLE command (not all databases do)
+ALTER TABLE students ADD COLUMN cohort VARCHAR(20);
+
+ALTER TABLE students DROP cohort;
